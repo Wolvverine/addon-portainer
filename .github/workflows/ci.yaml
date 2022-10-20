@@ -140,7 +140,9 @@ jobs:
       - name: 🏗 Set up Docker Buildx
         uses: docker/setup-buildx-action@v1.6.0
       - name: 🏗 Set up CodeNotary
-        run: bash <(curl https://getvcn.codenotary.com -L)
+        uses: codenotary/vcn-github-action@v2
+        with:
+          standard_usage: false
       - name: ℹ️ Compose build flags
         id: flags
         run: |
