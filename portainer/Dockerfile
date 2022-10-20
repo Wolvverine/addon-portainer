@@ -6,6 +6,7 @@ FROM ${BUILD_FROM}
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Setup base
+ARG PORTAINERVER=2.15.1
 ARG BUILD_ARCH
 RUN \
     if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
@@ -14,7 +15,7 @@ RUN \
     && if [ "${BUILD_ARCH}" = "amd64" ]; then ARCH="amd64"; fi \
     \
     && curl -L -s \
-        "https://github.com/portainer/portainer/releases/download/2.14.1/portainer-2.14.1-linux-${ARCH}.tar.gz" \
+        "https://github.com/portainer/portainer/releases/download/${PORTAINERVER}/portainer-${PORTAINERVER}-linux-${ARCH}.tar.gz" \
         | tar zxvf - -C /opt/
 
 # Copy root filesystem
